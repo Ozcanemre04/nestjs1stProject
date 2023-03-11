@@ -11,22 +11,22 @@ datasource db {
 }
 
 model User {
-  id             String          @unique @default(uuid())
-  email          String          @unique
-  firstname      String
-  lastname       String
-  phone_number   String          @unique
-  hashedPassword String
-  createdAt      DateTime        @default(now())
-  updateAt       DateTime        @updatedAt()
-  verified       Boolean         @default(false)
-  cart           Cart[]
-  adress         Adress[]
-  resetpassword  ResetPassword[]
-  forgetpassword  forgetPasswordToken[]
+  id                  String                @unique @default(uuid())
+  email               String                @unique
+  firstname           String
+  lastname            String
+  phone_number        String                @unique
+  hashedPassword      String
+  createdAt           DateTime              @default(now())
+  updateAt            DateTime              @updatedAt()
+  verified            Boolean               @default(false)
+  cart                Cart[]
+  adress              Adress[]
+  resetpassword       ResetPassword[]
+  forgetpassword      forgetPasswordToken[]
   changePasswordToken changePasswordToken[]
-  changePassword changePassword[]
- }
+  changePassword      changePassword[]
+}
 
 model Adress {
   country String
@@ -38,33 +38,33 @@ model Adress {
 }
 
 model forgetPasswordToken {
-  id    Int    @unique @default(autoincrement())
-  email String
-  token String @unique
-  user            User   @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userid          String @unique
+  id     Int    @unique @default(autoincrement())
+  email  String
+  token  String @unique
+  user   User   @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userid String @unique
 }
 
 model ResetPassword {
-  token           String
-  newpassword        String
-  user            User   @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userid          String @unique
+  token       String
+  newpassword String
+  user        User   @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userid      String @unique
 }
 
 model changePasswordToken {
-  id    Int    @unique @default(autoincrement())
-  token String @unique
-  user            User   @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userid          String @unique
-}
-model changePassword {
-  token           String
-  newpassword     String
-  user            User   @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userid          String @unique
+  id     Int    @unique @default(autoincrement())
+  token  String @unique
+  user   User   @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userid String @unique
 }
 
+model changePassword {
+  token       String
+  newpassword String
+  user        User   @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userid      String @unique
+}
 
 model Product {
   id          Int    @unique
